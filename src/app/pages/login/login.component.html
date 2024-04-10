@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="main-card">
+    <p-card styleClass="pcard" [style]="{ width: '800px' }">
+        <div class="card-header">
+            <svg (click)="loginReset()" [routerLink]="['/main']" routerLinkActive="router-link-active" width="35" height="35" fill="rgb(16, 137, 211)" class="bi bi-arrow-left-circle back" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+            </svg>
+        </div>
+        <div class="card-body">
+            <div class="card-info">
+                <div class="heading">Ulgama girmek</div>
+                <form class="form">
+                    <input required="" class="input" placeholder="Adynyzy girizin">
+                    <input required="" class="input" placeholder="Acar sozi">
+                    <input type="button" (click)="login()" class="login-button" value="Girmek">
+                </form>
+            </div>
+        </div>
+
+        <div class="card-footer">
+        </div>
+    </p-card>
+</div>

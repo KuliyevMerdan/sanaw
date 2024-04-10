@@ -1,25 +1,24 @@
 <div class="main-card">
     <p-card styleClass="pcard" [style]="{ width: '800px' }">
         <div class="card-header">
+            <svg [routerLink]="['/summary']" routerLinkActive="router-link-active" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-circle back" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+            </svg>
             <h3>Elektron Sanaw</h3>
         </div>
         <div class="card-body">
             <div class="card-image">
-                <img [src]="photo" alt="placeholder" width="100px" />
+                <input type="file" width="100px" />
             </div>
             <div class="card-info">
                 <form>
                     <div class="username">
                         <label for="username">Ady we familiýasy</label>
-                        <input pInputText #username id="username" disabled />
+                        <input pInputText id="username" />
                     </div>
                     <div class="role">
                         <label for="role">Wezipesi</label>
-                        <input pInputText #role id="role" disabled/>
-                    </div>
-                    <div class="time">
-                        <label for="time">Gelen wagty</label>
-                        <input pInputText #time id="time" disabled/>
+                        <input pInputText id="role" />
                     </div>
                 </form>
             </div>
@@ -27,17 +26,16 @@
 
         <div class="card-footer">
             <span class="p-float-label">
-                <input pInputText #ID id="ID" />
+                <input pInputText id="ID" />
                 <label for="ID">ID</label>
             </span>
-            <input type="button" (click)="check()" pRipple class="btn btn-primary" value="Bellenmek" />
-            <input type="button" (click)="loginReset()" [routerLink]="['/summary']" routerLinkActive="router-link-active" pRipple class="btn btn-success" value="Hasabat" />
+            <input type="button" (click)="addUser()" pRipple class="btn btn-success" value="Işgäri goş" />
         </div>
     </p-card>
 </div>
 
 <p-dialog header="" [(visible)]="visible" [modal]="true" [style]="{width: '20vw'}">
     <h4>
-        {{ notification }}
+        Täze işgär goşuldy!
     </h4>
 </p-dialog>
