@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
 
   notification: any;
   ID: any;
-  photo: string = 'https://github.com/KuliyevMerdan/sanaw/blob/main/src/assets/place.jpg'
+  photo: string = '/assets/place.jpg'
   //photo: string = '../../../assets/place.jpg';
   username: any;
   role: any;
@@ -48,7 +48,7 @@ export class MainComponent implements OnInit {
     this.time = this.datePipe.transform(new Date(), 'h:mm')
     if(this.IDel.nativeElement.value === '12') {
       this.notification = 'Gelen wagtyňyz bellendi!'
-      this.photo = 'https://github.com/KuliyevMerdan/sanaw/blob/main/src/assets/gyz.jpg'
+      this.photo = '/assets/gyz.jpg'
       //this.photo = 'http://localhost:4200/assets/gyz.jpg';
       this.usernameEl.nativeElement.value = 'Selbi Tuwakgylyjowa';
       this.roleEl.nativeElement.value = 'Işçi';
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
         this.visible = false
       } , 3000)
       setTimeout(() => {
-        this.photo = 'https://github.com/KuliyevMerdan/sanaw/blob/main/src/assets/place.jpg';
+        this.photo = '/assets/place.jpg';
         this.usernameEl.nativeElement.value = '';
         this.roleEl.nativeElement.value = '';
         this.timeEl.nativeElement.value = '';
