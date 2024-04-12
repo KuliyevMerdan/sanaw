@@ -63,7 +63,7 @@ export class MainComponent implements OnInit {
         this.roleEl.nativeElement.value = '';
         this.timeEl.nativeElement.value = '';
         this.IDel.nativeElement.value = '';
-      } , 5000)
+      } , 6000)
     } else if(this.IDel.nativeElement.value === ''){
       this.notification = 'ID belgiňizi giriziň!'
       this.visible = true;
