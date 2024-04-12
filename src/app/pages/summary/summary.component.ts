@@ -9,12 +9,13 @@ import { TableModule } from 'primeng/table';
 import { UsersService } from '../../users.service';
 import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
+import { HttpClientModule } from '@angular/common/http';
 import * as XLSX from 'xlsx'
   
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [ButtonModule, CheckboxModule, CardModule, ImageModule, FieldsetModule, RouterLink, TableModule, DialogModule],
+  imports: [ButtonModule, CheckboxModule, CardModule, ImageModule, FieldsetModule, RouterLink, TableModule, DialogModule, HttpClientModule],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.css',
   providers: [UsersService]
@@ -27,6 +28,8 @@ export class SummaryComponent implements OnInit {
   constructor(private usersService: UsersService, private router: Router
   ) { }
   ngOnInit(): void {
+    this.getUsents();
+    console.log(this.users)
     if(localStorage.getItem('currentUser') === 'true'){
       console.log("Successfully logged in!")
     } else {
@@ -46,4 +49,8 @@ export class SummaryComponent implements OnInit {
   loginReset():void {
     localStorage.setItem('currentUser', 'false')
   }
+
+  getUsents(): void{
+    this.users = this.usersService.getUsers()
+}
 }

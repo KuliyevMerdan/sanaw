@@ -7,14 +7,16 @@ import { FieldsetModule } from 'primeng/fieldset'
 import { RouterLink } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { DatePipe } from '@angular/common';
+import { UsersService } from '../../users.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ButtonModule, CheckboxModule, CardModule, ImageModule, FieldsetModule, RouterLink, DialogModule],
+  imports: [ButtonModule, CheckboxModule, CardModule, ImageModule, FieldsetModule, RouterLink, DialogModule, HttpClientModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css',
-  providers: [DatePipe]
+  providers: [DatePipe, UsersService]
 })
 export class MainComponent implements OnInit {
   @ViewChild('ID') IDel: ElementRef;
@@ -31,15 +33,19 @@ export class MainComponent implements OnInit {
   username: any;
   role: any;
   time: any;
+  users: any[] = [];
 
-  constructor(private datePipe: DatePipe){
+  constructor(private datePipe: DatePipe, private usersService: UsersService){
     this.IDel = this.ID;
     this.usernameEl = this.username;
     this.roleEl = this.role;
     this.timeEl = this.time;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.users = this.usersService.getUsers()
+    console.log(this.users)
+  }
   loginReset():void {
     localStorage.setItem('currentUser', 'false')
   }
