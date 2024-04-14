@@ -8,27 +8,23 @@
         </div>
         <div class="card-body">
             <div class="card-image">
-                <input type="file" width="100px" />
+                <input type="file" (change)="handleChange($event)" width="100px" />
             </div>
             <div class="card-info">
                 <form>
                     <div class="username">
                         <label for="username">Ady we familiýasy</label>
-                        <input pInputText id="username" />
+                        <input (change)="handleName($event)" pInputText id="username" />
                     </div>
                     <div class="role">
                         <label for="role">Wezipesi</label>
-                        <input pInputText id="role" />
+                        <input (change)="handleRole($event)" pInputText id="role" />
                     </div>
                 </form>
             </div>
         </div>
 
         <div class="card-footer">
-            <span class="p-float-label">
-                <input pInputText id="ID" />
-                <label for="ID">ID</label>
-            </span>
             <input type="button" (click)="addUser()" pRipple class="btn btn-success" value="Işgäri goş" />
         </div>
     </p-card>

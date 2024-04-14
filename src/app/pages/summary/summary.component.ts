@@ -28,10 +28,10 @@ export class SummaryComponent implements OnInit {
   constructor(private usersService: UsersService, private router: Router
   ) { }
   ngOnInit(): void {
-    this.getUsents();
-    console.log(this.users)
+    this.getUsers();
+    //console.log(this.users)
     if(localStorage.getItem('currentUser') === 'true'){
-      console.log("Successfully logged in!")
+      //console.log("Successfully logged in!")
     } else {
       this.router.navigate(['/login']);
     }
@@ -50,7 +50,10 @@ export class SummaryComponent implements OnInit {
     localStorage.setItem('currentUser', 'false')
   }
 
-  getUsents(): void{
-    this.users = this.usersService.getUsers()
+  getUsers(): void{
+    this.usersService.getUsers().subscribe((users: any) => {
+      console.log(users)
+      this.users = users;
+    })
 }
 }

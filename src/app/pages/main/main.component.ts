@@ -29,7 +29,6 @@ export class MainComponent implements OnInit {
   notification: any;
   ID: any;
   photo: string = './assets/place.jpg'
-  //photo: string = '../../../assets/place.jpg';
   username: any;
   role: any;
   time: any;
@@ -43,43 +42,48 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = this.usersService.getUsers()
-    console.log(this.users)
+    this.getUsers()
   }
   loginReset():void {
     localStorage.setItem('currentUser', 'false')
   }
 
   check():void {
-    this.time = this.datePipe.transform(new Date(), 'h:mm')
-    if(this.IDel.nativeElement.value === '12') {
-      this.notification = 'Gelen wagtyňyz bellendi!'
-      this.photo = './assets/gyz.jpg'
-      //this.photo = 'http://localhost:4200/assets/gyz.jpg';
-      this.usernameEl.nativeElement.value = 'Selbi Tuwakgylyjowa';
-      this.roleEl.nativeElement.value = 'Işçi';
-      this.timeEl.nativeElement.value = this.time;
-      this.visible = true;
-      setTimeout(() => {
-        this.visible = false
-      } , 3000)
-      setTimeout(() => {
-        this.photo = './assets/place.jpg';
-        this.usernameEl.nativeElement.value = '';
-        this.roleEl.nativeElement.value = '';
-        this.timeEl.nativeElement.value = '';
-        this.IDel.nativeElement.value = '';
-      } , 6000)
-    } else if(this.IDel.nativeElement.value === ''){
-      this.notification = 'ID belgiňizi giriziň!'
-      this.visible = true;
-      setTimeout(() => {this.visible = false} , 2000)
-    } else {
-      this.notification = 'Bular ýaly ID belgisi bazada ýok!'
-      this.visible = true;
-      setTimeout(() => {this.visible = false} , 2000)
-    }
-    //console.log(this.IDel.nativeElement.value)
+    this.time = this.datePipe.transform(new Date(), 'h:mm d/M/yyyy')
+    this.users.forEach((item) => {
+      if(item.main_id === this.IDel.nativeElement.value){
+        this.notification = 'Gelen wagtyňyz bellendi!'
+        this.photo = `http://localhost:3000/${item.filename}`
+        this.usernameEl.nativeElement.value = item.name;
+        this.roleEl.nativeElement.value = item.role;
+        this.timeEl.nativeElement.value = this.time;
+        this.update(item.main_id, this.time)
+        this.visible = true;
+        setTimeout(() => {
+          this.visible = false
+        } , 3000)
+        setTimeout(() => {
+          this.photo = './assets/place.jpg';
+          this.usernameEl.nativeElement.value = '';
+          this.roleEl.nativeElement.value = '';
+          this.timeEl.nativeElement.value = '';
+          this.IDel.nativeElement.value = '';
+        } , 6000)
+      } else if(this.IDel.nativeElement.value === ''){
+        this.notification = 'ID belgiňizi giriziň!'
+        this.visible = true;
+        setTimeout(() => {this.visible = false} , 2000)
+      }
+    })
+  }
+  getUsers(): void{
+    this.usersService.getUsers().subscribe((data: any) => {
+      this.users = data;
+      console.log(this.users)
+    })
+  }
+  update(id:any, time: any){
+    this.usersService.check(id, time).subscribe(res => console.log(res))
   }
 }
 
